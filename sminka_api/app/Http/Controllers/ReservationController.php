@@ -145,7 +145,7 @@ class ReservationController extends Controller
         }
     }
 
-    public function paginacija(Request $request)
+    public function paginate(Request $request)
     {
         $perPage = $request->perPage ? $request->perPage : 3;
         $page = $request->page ? $request->page : 1;
