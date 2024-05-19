@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
 
             </Routes>
         </BrowserRouter>
+
+        <Footer />
 
     </div>
   );
