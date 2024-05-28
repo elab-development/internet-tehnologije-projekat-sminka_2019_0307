@@ -1,19 +1,13 @@
 import React, {useState} from 'react';
 import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
+import useForm from "../useForm";
 
 const Contact = () => {
 
-    const [formData, setFormData] = useState({
+    const [formData, handleChange] = useForm({
         email: "",
         message: ""
     });
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    }
 
     const [showMessage, setShowMessage] = useState(false);
     const [message, setMessage] = useState({
