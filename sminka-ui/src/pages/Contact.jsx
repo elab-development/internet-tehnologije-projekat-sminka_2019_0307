@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
 import useForm from "../useForm";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
 
@@ -29,10 +30,30 @@ const Contact = () => {
         }
 
         setShowMessage(true);
-        setMessage({
-            type: "success",
-            text: "Message sent successfully. We will contact you soon to email: ." + formData.email
-        });
+
+
+        emailjs.send(
+            "service_kwkj3es",
+            "template_6sz1mqp",
+            {
+                email: formData.email,
+                message: formData.message
+            },
+            {
+            publicKey: "7rsln5sdntcyCJTww"
+        }
+        ).then((response) => {
+            setMessage({
+                type: "success",
+                text: "Message sent successfully. We will contact you soon to email: ." + formData.email
+            });
+        }).catch((error) => {
+            console.log(error);
+            setMessage({
+                type: "danger",
+                text: "Message sending failed. Please try again."
+            });
+        })
     }
 
     return (
