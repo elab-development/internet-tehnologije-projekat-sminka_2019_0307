@@ -27,6 +27,7 @@ Route::apiResource('/reservations', '\App\Http\Controllers\ReservationController
 
 Route::get('/find', '\App\Http\Controllers\ServiceController@findByName');
 Route::get('/grouped-data', '\App\Http\Controllers\ServiceController@groupByType');
+Route::get('/free-slots', '\App\Http\Controllers\ReservationController@getFreeSlotsForReservationDate');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('/services', '\App\Http\Controllers\ServiceController')->only(['store', 'update', 'destroy']);
