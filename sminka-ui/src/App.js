@@ -9,7 +9,9 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
+import Reservations from "./pages/Reservations";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
                 <Route path="/services" element={<Services />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
-
+                <Route path="/reservations" element={<Reservations />} />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </BrowserRouter>
 
