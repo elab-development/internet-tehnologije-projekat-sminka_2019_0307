@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
+use App\Models\Slot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,7 +53,8 @@ class ReservationController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
-            'user_id' => 'required|numeric'
+            'user_id' => 'required|numeric',
+            'slot_id' => 'required|numeric'
         ]);
 
         if ($validator->fails()){
@@ -69,7 +71,8 @@ class ReservationController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'message' => $request->message,
-            'user_id' => $request->user_id
+            'user_id' => $request->user_id,
+            'slot_id' => $request->slot_id
         ]);
 
         return response()->json([
@@ -90,7 +93,8 @@ class ReservationController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
-            'user_id' => 'required|numeric'
+            'user_id' => 'required|numeric',
+            'slot_id' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -110,6 +114,7 @@ class ReservationController extends Controller
             $reservation->phone = $request->phone;
             $reservation->message = $request->message;
             $reservation->user_id = $request->user_id;
+            $reservation->slot_id = $request->slot_id;
             $reservation->save();
 
             return response()->json([
@@ -156,6 +161,29 @@ class ReservationController extends Controller
             'success' => true,
             'message' => 'List of all reservations',
             'data' => $reservations
+        ]);
+    }
+
+    public function getFreeSlotsForReservationDate(Request $request)
+    {
+        $date = $request->date;
+        
+        $slots = Slot::all();
+        
+        $reservations = Reservation::where('reservation_date', $date)->get();
+        
+        $reservedSlots = $reservations->map(function ($reservation) {
+            return $reservation->slot_id;
+        });
+        
+        $freeSlots = $slots->filter(function ($slot) use ($reservedSlots) {
+            return !$reservedSlots->contains($slot->id);
+        });
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'List of free slots for reservation date',
+            'data' => $freeSlots
         ]);
     }
 

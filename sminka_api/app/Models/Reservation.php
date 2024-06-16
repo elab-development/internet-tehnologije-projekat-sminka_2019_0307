@@ -19,7 +19,8 @@ class Reservation extends Model
         'user_id',
         'email',
         'phone',
-        'message'
+        'message',
+        'slot_id'
     ];
 
     public function service()
@@ -30,5 +31,10 @@ class Reservation extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    public function slot()
+    {
+        return $this->belongsTo(Slot::class);
     }
 }
