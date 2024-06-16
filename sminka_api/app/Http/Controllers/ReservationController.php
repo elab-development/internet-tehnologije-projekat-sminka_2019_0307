@@ -6,6 +6,7 @@ use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
 use App\Models\Slot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
@@ -166,24 +167,28 @@ class ReservationController extends Controller
 
     public function getFreeSlotsForReservationDate(Request $request)
     {
-        $date = $request->date;
-        
+        $date = new \DateTime($request->date);
+
         $slots = Slot::all();
-        
-        $reservations = Reservation::where('reservation_date', $date)->get();
-        
+
+        $reservations = Reservation::where('reservation_date', date('Y-m-d', $date->getTimestamp()))->get();
+
         $reservedSlots = $reservations->map(function ($reservation) {
             return $reservation->slot_id;
         });
-        
-        $freeSlots = $slots->filter(function ($slot) use ($reservedSlots) {
-            return !$reservedSlots->contains($slot->id);
-        });
-        
+
+        $arrayFreeSlots = [];
+
+        foreach ($slots as $slot) {
+            if (!$reservedSlots->contains($slot->id)) {
+                $arrayFreeSlots[] = $slot;
+            }
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'List of free slots for reservation date',
-            'data' => $freeSlots
+            'data' => $arrayFreeSlots
         ]);
     }
 
@@ -197,5 +202,4 @@ class ReservationController extends Controller
             'data' => ReservationResource::collection($reservations)
         ]);
     }
-
 }
