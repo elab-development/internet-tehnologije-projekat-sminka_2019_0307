@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
            TypeSeeder::class,
            UserSeeder::class,
            ServiceSeeder::class,
+           SlotSeeder::class,
            ReservationSeeder::class,
         ]);
     }

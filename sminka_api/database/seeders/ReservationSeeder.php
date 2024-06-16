@@ -14,14 +14,15 @@ class ReservationSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             \App\Models\Reservation::create([
-                'user_id' => $i,
+                'user_id' => $faker->numberBetween(1, 10),
                 'service_id' => $faker->numberBetween(1, 6),
                 'reservation_date' => $faker->dateTimeBetween('now', '+1 month'),
                 'email' => $faker->email(),
                 'phone' => $faker->phoneNumber,
                 'message' => $faker->sentence,
+                'slot_id' => $faker->numberBetween(1, 4)
             ]);
         }
     }
