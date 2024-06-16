@@ -187,4 +187,15 @@ class ReservationController extends Controller
         ]);
     }
 
+    public function getReservationsForUser($id)
+    {
+        $reservations = Reservation::where('user_id', $id)->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'List of reservations for user',
+            'data' => ReservationResource::collection($reservations)
+        ]);
+    }
+
 }

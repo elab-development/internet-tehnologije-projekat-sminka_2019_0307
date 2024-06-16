@@ -36,4 +36,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/paginate', '\App\Http\Controllers\ReservationController@paginate');
 
     Route::post('/logout', '\App\Http\Controllers\LoginController@logout');
+    Route::get('/user-reservations/{id}', '\App\Http\Controllers\ReservationController@getReservationsForUser');
+    Route::get('/change-role/{id}', '\App\Http\Controllers\LoginController@changeRole');
 });

@@ -66,4 +66,17 @@ class LoginController extends Controller
             'user' => new UserResource($user)
         ]);
     }
+
+    public function changeRole($id)
+    {
+        $user = User::find($id);
+        $user->role = 'sminker';
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Role changed',
+            'user' => new UserResource($user)
+        ]);
+    }
 }
