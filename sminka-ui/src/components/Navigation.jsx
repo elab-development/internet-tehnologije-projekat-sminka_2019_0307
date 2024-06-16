@@ -2,6 +2,20 @@ import React from 'react';
 import logo from '../photos/logo.jpeg';
 
 const Navigation = () => {
+
+    const ulogovan = window.sessionStorage.getItem('token') !== null;
+    const user = ulogovan ? JSON.parse(window.sessionStorage.getItem('user')) : null;
+    const role = ulogovan ? user.role : null;
+
+    const radnik = ulogovan && (role === 'sminker' || role === 'admin');
+
+    const logout = () => {
+        window.sessionStorage.removeItem('token');
+        window.sessionStorage.removeItem('user');
+        window.location = '/';
+    }
+
+
     return (
         <>
             <div className="header_section">
@@ -27,9 +41,36 @@ const Navigation = () => {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/contact">Contact</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/login">Login</a>
-                                </li>
+                                {
+                                    !ulogovan && (
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/login">Login</a>
+                                        </li>
+                                    )
+                                }
+
+                                {
+                                    ulogovan && (
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/reservations">Reservations</a>
+                                        </li>
+                                    )
+                                }
+
+                                {
+                                    ulogovan && radnik && (
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/admin">Admin</a>
+                                        </li>
+                                    )
+                                }
+                                {
+                                    ulogovan && (
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="#" onClick={logout}>Logout</a>
+                                        </li>
+                                    )
+                                }
                             </ul>
                             <form className="form-inline my-2 my-lg-0">
                             </form>

@@ -34,6 +34,7 @@ const Login = () => {
                     type: "success",
                     text: "Login successful. Welcome " + user.name
                 });
+                window.location = "/";
             })
             .catch(err => {
                 console.log(err);
