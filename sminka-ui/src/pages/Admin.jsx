@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Alert, Container, Row, Table} from "react-bootstrap";
 import axiosInstance from "../axios-instance/axios-call";
+import {Chart} from "react-google-charts";
 
 const Admin = () => {
     const [showMessage, setShowMessage] = useState(false);
@@ -12,6 +13,24 @@ const Admin = () => {
 
     const ulogovaniKorisnik = JSON.parse(window.sessionStorage.getItem("user"));
     const isAdmin = ulogovaniKorisnik.role === "admin";
+
+    const [chartData, setChartData] = useState([]);
+
+    useEffect(() => {
+        axiosInstance.get("/grouped-data")
+            .then(res => {
+                console.log(res.data);
+                let data = [["Service Type", "Count"]];
+                res.data.data.forEach((service) => {
+                    data.push([service.type_name, parseInt(service.total)]);
+                });
+                setChartData(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+    }, []);
 
     useEffect(() => {
 
@@ -76,7 +95,7 @@ const Admin = () => {
                                                 () => {
                                                     promeniRolu(user.id)
                                                 }
-                                            }>Promeni Rolu</button>
+                                            }>Change Role</button>
                                         }</td>
                                     </tr>
                                 )
@@ -86,6 +105,22 @@ const Admin = () => {
                         </tbody>
                     </Table>
                 </Row>
+
+                <Row className="mt-3">
+                    <Chart
+                        chartType="PieChart"
+                        data={chartData}
+                        options={
+                            {
+                                title: "Services per type",
+                                is3D: true
+                            }
+                        }
+                        width={"100%"}
+                        height={"400px"}
+                    />
+                </Row>
+
             </Container>
         </>
     );
