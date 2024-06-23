@@ -4,6 +4,8 @@ import axiosInstance from "../axios-instance/axios-call";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import useForm from "../useForm";
+import {CSVLink} from "react-csv";
+import {FaDownload} from "react-icons/fa";
 
 const Reservations = () => {
 
@@ -12,6 +14,7 @@ const Reservations = () => {
     const [izabraniDatum, setIzabraniDatum] = useState(new Date());
     const [freeSlots, setFreeSlots] = useState([]);
     const [services, setServices] = useState([]);
+    const [reservationsDownload, setReservationsDownload] = useState([]);
 
     const [formData, handleChange] = useForm(
         {
@@ -39,6 +42,18 @@ const Reservations = () => {
             .then(res => {
                 console.log(res.data);
                 setReservations(res.data.data);
+
+                let dataForDownload = res.data.data.map((reservation) => {
+                    return {
+                        service: reservation.service.name,
+                        date: reservation.reservation_date,
+                        slot: reservation.slot.name + " : " + reservation.slot.times,
+                        price: reservation.service.price,
+                        message: reservation.message
+                    }
+                });
+                setReservationsDownload(dataForDownload);
+
             })
             .catch(err => {
                 console.log(err);
@@ -158,6 +173,17 @@ const Reservations = () => {
                             <Button onClick={reserve} disabled={freeSlots.length === 0} variant="dark">Reserve</Button>
                         </Form>
                     </Col>
+                </Row>
+
+                <Row>
+                    <CSVLink
+                        data={reservationsDownload}
+                        filename={"reservations.csv"}
+                        className="btn btn-dark"
+                        target="_blank"
+                    >
+                        Download reservations <FaDownload/>
+                    </CSVLink>;
                 </Row>
             </Container>
         </>
