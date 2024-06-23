@@ -79,4 +79,13 @@ class LoginController extends Controller
             'user' => new UserResource($user)
         ]);
     }
+
+    public function allUsers()
+    {
+        $users = User::all();
+        return response()->json([
+            'success' => true,
+            'data' => UserResource::collection($users)
+        ]);
+    }
 }
