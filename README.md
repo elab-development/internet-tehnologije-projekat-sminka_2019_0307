@@ -1,8 +1,10 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1IMeAlJr)
 ##Opis
+
 MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisnici mogu da vide sve dostupne usluge u salonu, njegovu lokaciju, informacije o osoblju salona i dva radnika meseca, zatim da kontaktiraju osoblje slanjem poruka, registruju se ili prijave na sistem. Ulogovani korisnici mogu da vide sve pretgodne rezervacije, kreiranju novu za željenu uslugu u nekom od slobodnih termina i preuzmu .csv fajl koji sadrži informacije o njihovim rezervacijama. Administrator i šminkeri mogu da vide sve korisnike sistema i usluge grupisane po tipu. Samo administratori mogu da promene ulogu korisnika. Aplikacija koristi Laravel za backend i React za frontend deo. 
 
 ##Instalacija
+
 ###React
 - npm i react-router-dom - Instalira React Router biblioteku koja se koristi za upravljanje navigacijom i rutiranjem u aplikacijama baziranim na React-u.
 - npm i react-icons - Instalira biblioteku React Icons koja sadrži razne ikone iz popularnih biblioteka (Facebook, Instagram, Twitter, Linkedin, Mapa, Download, Phone...)
@@ -39,6 +41,7 @@ MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisni
 - 'database' - Migracije i Seeder-i za bazu podataka
 
 ##Funkcionalnosti
+
 -**Pregled usluga**: Korisnici mogu da pregledaju dostupne usluge salona na stranici Services.
 -**Registracija i prijava**: Korisnici se mogu registrovati i prijaviti na sistem (stranica Login) kako bi mogli da rezervisu zeljenu uslugu.
 -**Pregled rezervacija**: Ulogovani korisnici mogu videti svoje prethodne rezervacije.
@@ -51,9 +54,10 @@ MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisni
 -**Odjava**: Svi ulogovani korisnici se mogu odjaviti sa sistema.
 
 ##Komunikacija izmedju komponenti
-- Koristi se: 1. 'useState' hook za pracenje stanja komponenti
-              2. 'useEffect' hook za slanje HTTP zahteva serveru
-              3. 'useForm' custom hook za upravljanje stanjem forme na stranici Contact, Login i Reservations i azuriranje polja na formi nakon sto korisnik unese odredjene vrednosti
+
+- Koristi se: 1. 'useState' hook za pracenje stanja komponenti.
+              2. 'useEffect' hook za slanje HTTP zahteva serveru.
+              3. 'useForm' custom hook za upravljanje stanjem forme na stranici Contact, Login i Reservations i azuriranje polja na formi nakon sto korisnik unese odredjene vrednosti.
 - Axios se koristi za slanje HTTP zahteva ka serveru.
 - React Router se koristi za navigaciju izmedju stranica.
 
