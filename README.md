@@ -43,25 +43,35 @@ MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisni
 ##Funkcionalnosti
 
 -**Pregled usluga**: Korisnici mogu da pregledaju dostupne usluge salona na stranici Services.
+
 -**Registracija i prijava**: Korisnici se mogu registrovati i prijaviti na sistem (stranica Login) kako bi mogli da rezervisu zeljenu uslugu.
+
 -**Pregled rezervacija**: Ulogovani korisnici mogu videti svoje prethodne rezervacije.
+
 -**Rezervacija usluge**: Ulogovani korisnici, izborom datuma, slobodnog termina tog dana i zeljene usluge mogu kreirati novu rezervaciju.
+
 -**Preuzimanje rezervacija u .csv fajlu**: Ulogovani korisnici mogu preuzeti .csv fajl koji sadrzi informacije o svim rezervacijama.
+
 -**Promena uloge korisnika u sminkera**: Administrator mogu promeniti ulogu korisnika u sminkera na stranici Admin.
+
 -**Pregled svih korisnika**: Sminkeri i administrator mogu da vide sve korisnike na stranici Admin.
+
 -**Pregled grupisanih usluga po tipu**: Sminkeri i administrator na stranici Admin mogu videti graficki prikaz usluga grupisanih po tipu.
+
 -**Slanje poruke radnicima salona**: Svi korisnici mogu kontaktirati osoblje slanjem poruke putem EmailJS veb servisa.
+
 -**Odjava**: Svi ulogovani korisnici se mogu odjaviti sa sistema.
 
 ##Komunikacija izmedju komponenti
 
-- Koristi se: 1. 'useState' hook za pracenje stanja komponenti.
-              2. 'useEffect' hook za slanje HTTP zahteva serveru.
-              3. 'useForm' custom hook za upravljanje stanjem forme na stranici Contact, Login i Reservations i azuriranje polja na formi nakon sto korisnik unese odredjene vrednosti.
-- Axios se koristi za slanje HTTP zahteva ka serveru.
-- React Router se koristi za navigaciju izmedju stranica.
+1. 'useState' hook se koristi za pracenje stanja komponenti
+2. 'useEffect' hook se koristi za slanje HTTP zahteva serveru.
+3. 'useForm' custom hook se koristi za upravljanje stanjem forme na stranici Contact, Login i Reservations i azuriranje polja na formi nakon sto korisnik unese odredjene vrednosti.
+4. Axios se koristi za slanje HTTP zahteva ka serveru.
+5. React Router se koristi za navigaciju izmedju stranica.
 
 ##Povezivanje sa bazom podataka
+
 Aplikacija koristi MySQL bazu podataka putem Laravel Eloquent ORM-a. Baza podataka sadrzi tabele korisnika, rezervacija, usluga, tipova usluga i termina. Povezivanje sa bazom se vrsi kroz konfiguracioni fajl '.env' 
 
   
