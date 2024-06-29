@@ -1,4 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1IMeAlJr)
+
 ##Opis
 
 MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisnici mogu da vide sve dostupne usluge u salonu, njegovu lokaciju, informacije o osoblju salona i dva radnika meseca, zatim da kontaktiraju osoblje slanjem poruka, registruju se ili prijave na sistem. Ulogovani korisnici mogu da vide sve pretgodne rezervacije, kreiranju novu za željenu uslugu u nekom od slobodnih termina i preuzmu .csv fajl koji sadrži informacije o njihovim rezervacijama. Administrator i šminkeri mogu da vide sve korisnike sistema i usluge grupisane po tipu. Samo administratori mogu da promene ulogu korisnika. Aplikacija koristi Laravel za backend i React za frontend deo. 
@@ -7,7 +8,7 @@ MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisni
 
 ###React
 - npm i react-router-dom - Instalira React Router biblioteku koja se koristi za upravljanje navigacijom i rutiranjem u aplikacijama baziranim na React-u.
-- npm i react-icons - Instalira biblioteku React Icons koja sadrži razne ikone iz popularnih biblioteka (Facebook, Instagram, Twitter, Linkedin, Mapa, Download, Phone...)
+- npm i react-icons - Instalira biblioteku React Icons koja sadrži razne ikone iz popularnih biblioteka (Facebook, Instagram, Twitter, Linkedin, Mapa, Download, Phone...).
 - npm install react-bootstrap bootstrap - Instalira React-Bootstrap i Bootstrap CSS framework za kreiranje responzivnih i stilizovanih korisnickih interfejsa.
 - npm i axios - Instalira Axios biblioteku. Preko Axios instance se iz React aplikacije salju HTTP zahtevi serveru.
 - npm i react-datepicker - Instalira React Datepicker komponentu koja omogućava jednostavno dodavanje polja za unos datuma sa interfejsom za odabir.
@@ -16,7 +17,7 @@ MSBeauty je veb aplikacija za upravljanje rezervacijama u salonu lepote. Korisni
 - npm i react-csv - Instalira React CSV biblioteku koja omogućava jednostavno preuzimanje podataka u CSV formatu (preuzimanje rezervacija).
 
 ###Laravel 
-- composer global require laravel/installer - Instalacija Laravel-a
+- composer global require laravel/installer - Instalacija Laravel-a.
 - composer create-project --prefer-dist laravel/laravel - Ova komanda kreira novi direktorijum sa svim potrebnim datotekama za Laravel aplikaciju.
 - composer require laravel/sanctum - Ova komanda instalira Laravel Sanctum paket. Sanctum omogućava lako kreiranje i upravljanje API tokenima za korisnike.
 
